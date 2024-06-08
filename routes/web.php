@@ -21,6 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::resource('paises', 'App\Http\Controllers\PaisController');
+
+
+
 Auth::routes();
 
 Route::get('/home', function() {

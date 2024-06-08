@@ -12,7 +12,8 @@ class PaisController extends Controller
      */
     public function index()
     {
-        //
+        $paises = Pais::all();
+        return view('paises.index')->with('paises', $paises);
     }
 
     /**
@@ -20,7 +21,7 @@ class PaisController extends Controller
      */
     public function create()
     {
-        //
+        return view('paises.create');
     }
 
     /**
@@ -28,7 +29,11 @@ class PaisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paises = new Pais();
+        $paises->nombre = $request->get('nombrep');
+        $paises->save();
+
+        return redirect('/paises');
     }
 
     /**
@@ -58,8 +63,12 @@ class PaisController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pais $pais)
+    public function destroy($id)
     {
-        //
+        $pais = Pais::find($id);
+        $pais->delete();
+
+        return redirect('/paises');
+
     }
 }
